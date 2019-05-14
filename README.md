@@ -23,6 +23,6 @@ The upload button will send the file to the server and the server responds with 
 Also test out the functionality when no file is uploaded or the uploaded file is having improper TSV format.
 
 ## Avoid the trouble to setup the project!
-This app is live [here](pranjay.pythonanywhere.com/hcaapp). Full functionality can be tested by visiting this website.
+This app is live [here](http://pranjay.pythonanywhere.com/hcaapp/). Full functionality can be tested by visiting this website.
 
 Thanks!
