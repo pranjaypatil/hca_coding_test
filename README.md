@@ -3,7 +3,7 @@
 This repository contains the code for HCA coding challenge. It is a web app created using the Django framework https://www.djangoproject.com/.
 
 ## System Requirements
-To build this app, following componenets are required,
+To build this app, following components are required,
 * Python 3.5+
 * Django 2.1+
 
