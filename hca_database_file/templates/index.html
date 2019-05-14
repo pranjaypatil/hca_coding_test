@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Upload tsv file to database</title>
+        <style type="text/css">
+            .uploadForm 
+                {
+                    text-align: center;
+                    color: orange
+                }
+            .formElements 
+                {
+                    display: inline-block;
+                    color: blue;
+                }
+
+            #uploadButton
+            {
+                background-color: blue;
+                color: white;
+                padding: 10px 25px;
+                text-align: center;
+                text-decoration: none;
+                border: none;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        
+        <div class="uploadForm">
+            <h1>HCA Coding Test</h1>
+            <div class="formElements">
+            <p>Upload a file to obtain total revenue</p>
+            <p>Format: Tab Seperated Values with fields in following order: item, item_description, item_price, item_count, vendor,    vendor_address</p>
+            <form action="upload/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="file"/>
+                <br/>
+                <br/>
+                <input type="checkbox" name="overwrite" value="1"><label>Overwrite exisiting records</label></br></br>
+                <input type="submit" value="Upload"/ id="uploadButton">
+            </form>
+            </div>
+        </div>
+    </body>
+</html>

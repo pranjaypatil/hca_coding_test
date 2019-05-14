@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Total Revenue</title>
+        <style type="text/css">
+            p {
+                color: blue;
+            }
+            
+            h1 {
+                color: orange;
+            }
+            span {
+                font-weight: bold;
+            }
+            button {
+                background-color: blue;
+                color: white;
+                padding: 10px 25px;
+                text-align: center;
+                text-decoration: none;
+                border: none;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <h1>Total Revenue</h1>
+            <p> The total revenue for the current records in the database is 
+                <span>${{total_revenue | floatformat:2}}
+            </p>
+            <a href=".."><button>Upload another file</button></a>
+        </center>
+    </body>
+</html>
