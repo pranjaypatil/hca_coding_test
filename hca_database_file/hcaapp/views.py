@@ -12,6 +12,13 @@ def upload(request):
     error_reason = ''
     response = 0
 
+    def isFloat(val):
+        try:
+            float(val)
+            return True
+        except ValueError:
+            return False
+
     if request.method == 'GET':
         return render(request, 'index.html')
 
@@ -31,8 +38,8 @@ def upload(request):
                 _ = FileUploadData.objects.create(
                         item = column[0],
                         item_description = column[1],
-                        item_price = column[2],
-                        item_count = column[3],
+                        item_price = column[2] if isFloat(column[2]) else 0,
+                        item_count = column[3] if column[3].isnumeric() else 0,
                         vendor = column[4],
                         vendor_address = column[5]
                     )
@@ -40,6 +47,8 @@ def upload(request):
             error_reason = 'File format not correct, please check for valid TSV format'
         except MultiValueDictKeyError:
             error_reason = 'No file was uploaded, please select a file in file chooser and try again. Click the button below to navigate to file upload page.'
+        except Exception:
+            error_reason = 'An unknown error occured, please check input file and try again'
         response = FileUploadData.objects.aggregate(total_revenue = Sum(F('item_price') * F('item_count'), output_field = FloatField()))['total_revenue']
         response = response if response is not None else 0
     return render(request, 'upload.html', {'total_revenue': response, 'error': error_reason})
