@@ -5,7 +5,7 @@
             p {
                 color: blue;
             }
-            
+
             h1 {
                 color: orange;
             }
@@ -21,14 +21,21 @@
                 border: none;
                 border-radius: 5px;
             }
+            #error {
+                color: red;
+            }
         </style>
     </head>
 
     <body>
         <center>
             <h1>Total Revenue</h1>
-            <p> The total revenue for the current records in the database is 
-                <span>${{total_revenue | floatformat:2}}
+
+            <p>
+            <span id="error">{{error}}</span>
+            <br/>
+            The total revenue for the current records in the database is
+                <span>${{total_revenue | floatformat:2}}</span>
             </p>
             <a href=".."><button>Upload another file</button></a>
         </center>
