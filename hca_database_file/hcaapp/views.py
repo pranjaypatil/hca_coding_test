@@ -10,6 +10,8 @@ def index(request):
 
 def upload(request):
     error_reason = ''
+    response = 0
+
     if request.method == 'GET':
         return render(request, 'index.html')
 
@@ -34,11 +36,10 @@ def upload(request):
                         vendor = column[4],
                         vendor_address = column[5]
                     )
-            response = FileUploadData.objects.aggregate(total_revenue = Sum(F('item_price') * F('item_count'), output_field = FloatField()))['total_revenue']
         except IndexError:
-            response = 0
             error_reason = 'File format not correct, please check for valid TSV format'
         except MultiValueDictKeyError:
-            response = 0
             error_reason = 'No file was uploaded, please select a file in file chooser and try again. Click the button below to navigate to file upload page.'
+        response = FileUploadData.objects.aggregate(total_revenue = Sum(F('item_price') * F('item_count'), output_field = FloatField()))['total_revenue']
+        response = response if response is not None else 0
     return render(request, 'upload.html', {'total_revenue': response, 'error': error_reason})
